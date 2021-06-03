@@ -1,0 +1,91 @@
+<mvc:View
+	controllerName="org.ubb.books.controller.BookList"
+	xmlns="sap.ui.table"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:u="sap.ui.unified"
+	xmlns:c="sap.ui.core"
+	xmlns:m="sap.m"
+	height="100%">
+			<Table id="idBooksTable" 
+			rows="{
+			path: '/CheckedBooks',
+			sorter: {
+				path: 'Checkoutd'
+			}
+		}" 
+			visibleRowCountMode="Auto" ariaLabelledBy="title" selectionMode="None">
+				<extension>
+					<m:OverflowToolbar style="Clear">
+						<m:Label text="First name"/>
+						<m:Input id="first-name" placeholder="John" width="13rem"/>
+						
+						<m:Label text="Last name"/>
+						<m:Input id="last-name" placeholder="Doe" width="13rem"/>
+
+						<m:Label text="Author"/>
+						<m:Input id="author" placeholder="Stephen Crane" width="15rem"/>
+						
+						<m:Label text="Title"/>
+						<m:Input id="title" placeholder="The Open Boat" width="18rem"/>
+						
+						<m:Button id="searchButton" text="Search" press=".onSearch" width="auto"/>
+					</m:OverflowToolbar>
+				</extension>
+				<columns>
+					<Column>
+						<m:Label text="Username" />
+						<template>
+							<m:Text text="{Username}" wrapping="false" />
+						</template>
+					</Column>
+					<Column id="col-first-name"	sortProperty="FirstName">
+						<m:Label text="First name" />
+						<template>
+							<m:Text text="{FirstName}" wrapping="false" />
+						</template>
+					</Column>
+					<Column	id="col-last-name" sortProperty="LastName">
+						<m:Label text="Last name" />
+						<template>
+							<m:Text text="{LastName}" wrapping="false" />
+						</template>
+					</Column>
+					<Column>
+						<m:Label id="col-checkout-date" text="Checkout date" />
+						<template>
+							<m:Text text="{
+								path: 'Checkoutd',
+								type: 'sap.ui.model.type.Date'
+							}" wrapping="false" />
+						</template>
+					</Column>
+					<Column>
+						<m:Label text="Return date" />
+						<template>
+							<m:Text text="{
+								path: 'Returnd',
+								type: 'sap.ui.model.type.Date'
+							}" wrapping="false" />
+						</template>
+					</Column>
+					<Column>
+						<m:Label text="ISBN" />
+						<template>
+							<m:Text text="{Isbn}" wrapping="false" />
+						</template>
+					</Column>
+					<Column id="col-title" sortProperty="Title" width="20rem">
+						<m:Label text="Title" />
+						<template>
+							<m:Text text="{Title}" wrapping="false" />
+						</template>
+					</Column>
+					<Column	id="col-author"	sortProperty="Author">
+						<m:Label text="Author" />
+						<template>
+							<m:Text text="{Author}" wrapping="false" />
+						</template>
+					</Column>
+				</columns>
+			</Table>
+</mvc:View>

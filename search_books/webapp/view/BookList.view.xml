@@ -1,0 +1,80 @@
+<mvc:View
+	controllerName="org.ubb.books.controller.BookList"
+   xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m">
+
+   <Table id="idBooksTable"
+		items="{
+			path: '/Books',
+			sorter: {
+				path: 'Title'
+			}
+		}"
+		growing="true"
+		growingThreshold="10">
+
+		<headerToolbar> 
+			<Toolbar>
+				<content>
+					<Label text="ISBN"/>
+					<Input id="isbn" placeholder="0000186092025" maxLength="10" width="50%"/>
+
+					<Label text="Author" width="20%"/>
+					<Input id="author" placeholder="Stephen Crane"/>
+					
+					<Label text="Title"/>
+					<Input id="title" placeholder="The Open Boat"/>
+
+					<Label text="Publish Date" width="30%"/>
+					<DatePicker id="pdate" displayFormat="short" 
+					valueFormat="yyyy-MM-ddTHH:mm" change="handleChange" width="40%"/>
+					
+					<Label text="Language" width="25%"/>
+					<Input id="language" placeholder="EN" width="10%"/>
+					
+					<Button	id="searchButton" text="Search" press=".onSearch" width="auto"/>
+				</content>
+			</Toolbar>
+		</headerToolbar>
+
+	
+		<columns>
+			<Column>
+				<Text text="Title" />
+			</Column>
+			<Column>
+				<Text text="Author" />
+			</Column>
+			<Column>
+				<Text text="Published on" />
+			</Column>
+			<Column>
+				<Text text="Language" />
+			</Column>
+         	<Column>
+				<Text text="Available books" />
+			</Column>
+			<Column width="10%"/>
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+					<ObjectIdentifier
+						title="{Title}"
+						text="{Isbn}"/>
+					<Text text="{Author}" />
+					<Text text="{ 
+							path: 'Publish',
+							type: 'sap.ui.model.type.Date'
+               			}" 
+					/>
+					<Text text="{Lang}" />
+					<Text text="{= parseInt(${Available}) }" />
+					<Button	id="checkoutButton" text="Checkout" press=".onCheckout" visible="{= parseInt(${Available}) !== 0}"/>
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+   
+</mvc:View>
